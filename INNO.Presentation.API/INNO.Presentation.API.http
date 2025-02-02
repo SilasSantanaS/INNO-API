@@ -1,0 +1,6 @@
+@INNO.Presentation.API_HostAddress = http://localhost:5259
+
+GET {{INNO.Presentation.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

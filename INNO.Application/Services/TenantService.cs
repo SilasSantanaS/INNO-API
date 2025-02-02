@@ -1,0 +1,99 @@
+﻿using AutoMapper;
+using INNO.Application.Interfaces.Services;
+using INNO.Domain.Filters;
+using INNO.Domain.Helpers;
+using INNO.Domain.Models;
+using INNO.Domain.ViewModels.v1;
+using INNO.Domain.ViewModels.v1.Tenants;
+using INNO.Infra.Interfaces.Repositories;
+using INNO.Infra.Repositories;
+
+namespace INNO.Application.Services
+{
+    public class TenantService : ITenantService
+    {
+        private readonly IMapper _mapper;
+        private readonly ITenantRepository _tenantRepository;
+
+        public TenantService(
+            IMapper mapper,
+            ITenantRepository tenantRepository
+        )
+        {
+            _mapper = mapper;
+            _tenantRepository = tenantRepository;
+        }
+
+        public async Task<bool> ActivateTenant(int id)
+        {
+            return await _tenantRepository.ActivateTenant(id);
+        }
+
+        public async Task<(TenantResponseVM? Result, string? Message)?> CreateTenant(TenantRequestVM data)
+        {
+            try
+            {
+                var tenant = await _tenantRepository.GetTenantByName(data.Name);
+
+                if (tenant != null)
+                {
+                    return (null, "Este hostname já está em uso.");
+                }
+
+                tenant = _mapper.Map<Tenant>(data);
+
+                tenant = await _tenantRepository.CreateTenant(tenant);
+
+                return (_mapper.Map<TenantResponseVM>(tenant), null);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<TenantResponseVM> GetTenantById(int id)
+        {
+            var result = await _tenantRepository.GetTenantById(id);
+
+            return _mapper.Map<TenantResponseVM>(result);
+        }
+
+        public async Task<bool> InactivateTenant(int id)
+        {
+            return await _tenantRepository.InactivateTenant(id);
+        }
+
+        public async Task<TenantListResponseVM> ListTenants(TenantFilter filter)
+        {
+            var result = await _tenantRepository.ListTenants(filter);
+            var totalItems = await _tenantRepository.GetTotalItems(filter);
+
+            return new TenantListResponseVM()
+            {
+                Metadata = new ListMetaVM()
+                {
+                    Count = result.Count(),
+                    Page = filter.GetPage(),
+                    TotalItems = totalItems,
+                    PageLimit = filter.GetPageLimit(),
+                },
+                Result = _mapper.Map<IEnumerable<TenantResponseVM>>(result)
+            };
+        }
+
+        public async Task<TenantResponseVM?> UpdateTenant(int id, TenantRequestVM data)
+        {
+            var tenant = _mapper.Map<Tenant>(data);
+            
+            tenant = await _tenantRepository.UpdateTenant(id, tenant);
+
+            if(tenant == null)
+            {
+                return null;
+            }
+
+            return _mapper.Map<TenantResponseVM>(tenant);
+        }
+    }
+}

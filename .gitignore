@@ -1,0 +1,47 @@
+## Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Dd]ist/
+[Dd]ebugFinal/
+[Dd]istFinal/
+bin/
+obj/
+
+## User-specific files
+.vs/
+.vscode/
+.idea/
+
+## Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+## Windows Installer files
+Thumbs.db
+ehthumbs.db
+
+## Windows Installer files
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+## Windows Installer files
+# Windows Installer folder
+# InstallShield files
+# Uncomment this section if you're building on Windows and using InstallShield
+# For more info: https://www.gitignore.io/api/windows,visualstudio
+
+# User-specific files
+.vs2019/
+.vs2017/
+
+## Microsoft Visual Studio for Mac
+.vscode/
+
+## Windows Installer files
+# Windows Installer folder
+# Uncomment this section if you're building on Windows and using InstallShield
+# For more info: https://www.gitignore.io/api/windows,visualstudio
