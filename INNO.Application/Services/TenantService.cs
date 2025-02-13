@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
 using INNO.Application.Interfaces.Services;
 using INNO.Domain.Filters;
-using INNO.Domain.Helpers;
 using INNO.Domain.Models;
+using INNO.Domain.Settings;
 using INNO.Domain.ViewModels.v1;
 using INNO.Domain.ViewModels.v1.Tenants;
 using INNO.Infra.Interfaces.Repositories;
-using INNO.Infra.Repositories;
 
 namespace INNO.Application.Services
 {
@@ -14,14 +13,17 @@ namespace INNO.Application.Services
     {
         private readonly IMapper _mapper;
         private readonly ITenantRepository _tenantRepository;
+        private readonly ITenantPreferencesRepository _preferencesRepository;
 
         public TenantService(
             IMapper mapper,
-            ITenantRepository tenantRepository
+            ITenantRepository tenantRepository,
+            ITenantPreferencesRepository preferencesRepository
         )
         {
             _mapper = mapper;
             _tenantRepository = tenantRepository;
+            _preferencesRepository = preferencesRepository;
         }
 
         public async Task<bool> ActivateTenant(int id)
@@ -43,6 +45,13 @@ namespace INNO.Application.Services
                 tenant = _mapper.Map<Tenant>(data);
 
                 tenant = await _tenantRepository.CreateTenant(tenant);
+
+                await _preferencesRepository.CreatePreferences(new TenantPreferences()
+                {
+                    TokenDuration = 2,
+                    InviteDuration = 20,
+                    TenantId = tenant.Id,
+                });
 
                 return (_mapper.Map<TenantResponseVM>(tenant), null);
             }

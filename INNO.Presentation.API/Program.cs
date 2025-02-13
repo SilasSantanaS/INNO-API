@@ -10,7 +10,6 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
         var configuration = builder.Configuration;
 
-
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
 
@@ -25,6 +24,7 @@ public class Program
         using (var scope = app.Services.CreateScope())
         {
             var serviceProvider = scope.ServiceProvider;
+
             UpdateDatabase(serviceProvider);
         }
 

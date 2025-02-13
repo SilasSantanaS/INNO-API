@@ -31,6 +31,11 @@ namespace INNO.Application.Services
         {
             var user = _mapper.Map<User>(data);
 
+            if(!user.TenantId.HasValue)
+            {
+                user.TenantId = _session.TenantId;
+            }
+
             var validation = new ValidationResultVM();
 
             user = await _userRepository.CreateUser(user);

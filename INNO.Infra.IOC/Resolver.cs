@@ -28,9 +28,11 @@ namespace INNO.Infra.IOC
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ITenantService, TenantService>();
             services.AddTransient<IPatientService, PatientService>();
+            services.AddTransient<IPreferencesService, PreferencesService>();
             services.AddTransient<IProfessionalService, ProfessionalService>();
 
             services.AddScoped<CurrentSession>();
+            services.AddScoped<TenantPreferences>();
 
             return services;
         }
@@ -58,6 +60,7 @@ namespace INNO.Infra.IOC
             services.AddTransient<ITenantRepository, TenantRepository>();
             services.AddTransient<IPatientRepository, PatientRepository>();
             services.AddTransient<IProfessionalRepository, ProfessionalRepository>();
+            services.AddTransient<ITenantPreferencesRepository, TenantPreferencesRepository>();
 
             return services;
         }

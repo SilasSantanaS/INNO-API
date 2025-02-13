@@ -9,14 +9,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace INNO.Presentation.API.Controllers.v1
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [ApiVersion("1")]
     [Route("tenants")]
     public class TenantsController : ControllerBase
     {
         [HttpPost("")]
-        //[Authorize(CustomPolicies.ApplicationManager)]
+        [Authorize(CustomPolicies.ApplicationManager)]
         public async Task<ActionResult<TenantResponseVM>> CreateTenant(
             [FromBody] TenantRequestVM data,
             [FromServices] ITenantService service
@@ -38,7 +38,7 @@ namespace INNO.Presentation.API.Controllers.v1
         }
 
         [HttpPost("{id}/activate")]
-        //[Authorize(CustomPolicies.ApplicationManager)]
+        [Authorize(CustomPolicies.ApplicationManager)]
         public async Task<ActionResult<TenantResponseVM>> ActivateTenant(
             int id,
             [FromServices] ITenantService service
@@ -55,7 +55,7 @@ namespace INNO.Presentation.API.Controllers.v1
         }
 
         [HttpPut("{id}")]
-        //[Authorize(CustomPolicies.ApplicationManager)]
+        [Authorize(CustomPolicies.ApplicationManager)]
         public async Task<ActionResult<UserResponseVM>> UpdateTenant(
             int id,
             [FromBody] TenantRequestVM data,
@@ -73,7 +73,7 @@ namespace INNO.Presentation.API.Controllers.v1
         }
 
         [HttpDelete("{id}")]
-        //[Authorize(CustomPolicies.ApplicationManager)]
+        [Authorize(CustomPolicies.ApplicationManager)]
         public async Task<ActionResult<TenantResponseVM>> InactivateTenant(
             int id,
             [FromServices] ITenantService service
@@ -90,7 +90,7 @@ namespace INNO.Presentation.API.Controllers.v1
         }
 
         [HttpGet("")]
-        //[Authorize(CustomPolicies.ApplicationManager)]
+        [Authorize(CustomPolicies.ApplicationManager)]
         public async Task<ActionResult<TenantListResponseVM>> ListTenants(
             [FromQuery] TenantFilter filter,
             [FromServices] ITenantService service
@@ -100,7 +100,7 @@ namespace INNO.Presentation.API.Controllers.v1
         }
 
         [HttpGet("{id}")]
-        //[Authorize(CustomPolicies.ApplicationManager)]
+        [Authorize(CustomPolicies.ApplicationManager)]
         public async Task<ActionResult<TenantResponseVM>> GetTenantById(
             int id,
             [FromServices] ITenantService service

@@ -21,6 +21,7 @@ namespace INNO.Infra.Repositories
                 "name",
                 "email",
                 "password",
+                "tenant_id",
                 "profile_id"
             ];
         }

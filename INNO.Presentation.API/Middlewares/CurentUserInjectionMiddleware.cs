@@ -43,21 +43,11 @@ namespace INNO.Presentation.API.Middlewares
 
             session.UserId = userId;
             session.TenantId = (tenantId == 0) ? null : tenantId;
-        }
+            session.Email = userClaims.FindFirstValue(ClaimTypes.Email);
 
-        private bool ValidateAccess(Tenant tenant, User user)
-        {
-            if (tenant?.InactivatedAt != null)
-            {
-                return false;
-            }
+            settings.TenantId = session.TenantId ?? 0;
 
-            if (user?.InactivatedAt != null)
-            {
-                return false;
-            }
-
-            return true;
+            await _next(context);
         }
     }
 }

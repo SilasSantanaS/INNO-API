@@ -24,6 +24,13 @@ namespace INNO.Presentation.API.Extensions
                     policy.RequireAuthenticatedUser().Build();
                 });
 
+                auth.AddPolicy(CustomPolicies.ApplicationAdmin, policy =>
+                {
+                    policy.RequireClaim(ClaimTypes.Role, EUserProfile.ApplicationAdmin.ToString("F"));
+                    policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
+                    policy.RequireAuthenticatedUser().Build();
+                });
+
                 auth.AddPolicy(CustomPolicies.AdminAccess, policy =>
                 {
                     policy.RequireClaim(ClaimTypes.Role,

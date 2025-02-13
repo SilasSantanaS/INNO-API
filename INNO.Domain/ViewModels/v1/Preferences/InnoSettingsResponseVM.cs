@@ -1,6 +1,6 @@
-﻿namespace INNO.Domain.Settings
+﻿namespace INNO.Domain.ViewModels.v1.Preferences
 {
-    public class TenantPreferences
+    public class InnoSettingsResponseVM
     {
         public int? TenantId { get; set; }
         public int? TokenDuration { get; set; }
