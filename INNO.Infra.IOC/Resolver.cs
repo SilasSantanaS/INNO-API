@@ -28,6 +28,7 @@ namespace INNO.Infra.IOC
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ITenantService, TenantService>();
             services.AddTransient<IPatientService, PatientService>();
+            services.AddTransient<IHealthPlanService, HealthPlanService>();
             services.AddTransient<IPreferencesService, PreferencesService>();
             services.AddTransient<IProfessionalService, ProfessionalService>();
 
@@ -54,11 +55,13 @@ namespace INNO.Infra.IOC
                 .AddLogging(lb => lb.AddFluentMigratorConsole());
 
             services.AddSingleton<IDbConnectionFactory>(connectionFactory);
+
             services.AddScoped<DbSession>();
 
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<ITenantRepository, TenantRepository>();
             services.AddTransient<IPatientRepository, PatientRepository>();
+            services.AddTransient<IHealthPlanRepository, HealthPlanRepository>();
             services.AddTransient<IProfessionalRepository, ProfessionalRepository>();
             services.AddTransient<ITenantPreferencesRepository, TenantPreferencesRepository>();
 
@@ -72,6 +75,7 @@ namespace INNO.Infra.IOC
                 ps.AddProfile(new UserMappingProfile());
                 ps.AddProfile(new TenantMappingProfile());
                 ps.AddProfile(new PatientMappingProfile());
+                ps.AddProfile(new HealthPlanMappingProfile());
                 ps.AddProfile(new ProfessionalMappingProfile());
             });
 

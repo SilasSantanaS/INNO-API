@@ -1,6 +1,6 @@
 ﻿namespace INNO.Domain.Models
 {
-    public class Patient : BaseEntity
+    public class HealthPlan : BaseEntity
     {
         public string? Name { get; set; }
     }

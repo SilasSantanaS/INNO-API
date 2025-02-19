@@ -96,7 +96,7 @@ namespace INNO.Application.Services
             };
         }
 
-        public async Task<UserResponseVM> UpdateUser(int id, UserPutRequestVM data)
+        public async Task<UserResponseVM?> UpdateUser(int id, UserPutRequestVM data)
         {
             var newUser = _mapper.Map<User>(data);
             var oldUser = await _userRepository.GetUserById(id);

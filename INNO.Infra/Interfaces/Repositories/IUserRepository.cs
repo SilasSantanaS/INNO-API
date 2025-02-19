@@ -13,6 +13,5 @@ namespace INNO.Infra.Interfaces.Repositories
         Task<bool> DeleteUser(int id, int tenantId);
         Task<IEnumerable<User>> ListUsers(UserFilter filter);
         Task<bool> UpdateUserPassword(int? id, string password);
-
     }
 }
