@@ -3,7 +3,7 @@ using System.Data;
 
 namespace INNO.Infra.Migrations
 {
-    [Migration(3)]
+    [Migration(1)]
     public class CreateTableInnoSettings : Migration
     {
         private readonly string tableName = "inno_settings";

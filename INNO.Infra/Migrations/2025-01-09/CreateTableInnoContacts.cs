@@ -3,17 +3,17 @@ using System.Data;
 
 namespace INNO.Infra.Migrations
 {
-    [Migration(6)]
-    public class CreateTableInnoHealthPlans : Migration
+    [Migration(5)]
+    public class CreateTableInnoContacts : Migration
     {
-        private readonly string tableName = "inno_health_plans";
+        private readonly string tableName = "inno_contacts";
         private readonly string innoTenants = "inno_tenants";
 
+        private readonly string obs = "obs";
         private readonly string name = "name";
+        private readonly string phone = "phone";
+        private readonly string email = "email";
         private readonly string tenantId = "tenant_id";
-        private readonly string createdAt = "created_at";
-        private readonly string updatedAt = "updated_at";
-        private readonly string inactivatedAt = "inactivated_at";
 
         public override void Up()
         {
@@ -23,22 +23,22 @@ namespace INNO.Infra.Migrations
                     .WithColumn("id")
                         .AsCustom("SERIAL")
                         .PrimaryKey()
+                    .WithColumn(obs)
+                        .AsString(255)
+                        .Nullable()
                     .WithColumn(name)
-                        .AsString(50)
-                        .NotNullable()
+                        .AsString(255)
+                        .Nullable()
+                    .WithColumn(phone)
+                        .AsString(20)
+                        .Nullable()
+                    .WithColumn(email)
+                        .AsString(70)
+                        .Nullable()
                     .WithColumn(tenantId)
                         .AsInt32()
                         .NotNullable()
-                        .ForeignKey(innoTenants, "id").OnDelete(Rule.Cascade)
-                    .WithColumn(createdAt)
-                        .AsDateTime()
-                        .WithDefault(SystemMethods.CurrentDateTime)
-                    .WithColumn(updatedAt)
-                        .AsDateTime()
-                        .Nullable()
-                    .WithColumn(inactivatedAt)
-                        .AsDateTime()
-                        .Nullable();
+                        .ForeignKey(innoTenants, "id").OnDelete(Rule.Cascade);
             }
         }
 

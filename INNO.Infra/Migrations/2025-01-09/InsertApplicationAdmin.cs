@@ -4,7 +4,7 @@ using INNO.Domain.Helpers;
 
 namespace INNO.Infra.Migrations
 {
-    [Migration(2)]
+    [Migration(3)]
     public class InsertApplicationAdmin : Migration
     {
         private readonly string tableName = "inno_users";

@@ -60,6 +60,8 @@ namespace INNO.Infra.IOC
 
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<ITenantRepository, TenantRepository>();
+            services.AddTransient<IAddressRepository, AddressRepository>();
+            services.AddTransient<IContactRepository, ContactRepository>();
             services.AddTransient<IPatientRepository, PatientRepository>();
             services.AddTransient<IHealthPlanRepository, HealthPlanRepository>();
             services.AddTransient<IProfessionalRepository, ProfessionalRepository>();
@@ -74,6 +76,8 @@ namespace INNO.Infra.IOC
             {
                 ps.AddProfile(new UserMappingProfile());
                 ps.AddProfile(new TenantMappingProfile());
+                ps.AddProfile(new AddressMappingProfile());
+                ps.AddProfile(new ContactMappingProfile());
                 ps.AddProfile(new PatientMappingProfile());
                 ps.AddProfile(new HealthPlanMappingProfile());
                 ps.AddProfile(new ProfessionalMappingProfile());

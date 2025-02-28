@@ -9,8 +9,8 @@
 
         public ValidationResultVM()
         {
-            Messages = new List<string>();
-            InvalidItems = new List<InvalidItemVM>();
+            Messages = [];
+            InvalidItems = [];
         }
     }
 }

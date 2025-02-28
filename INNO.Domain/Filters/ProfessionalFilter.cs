@@ -2,7 +2,8 @@
 {
     public class ProfessionalFilter : ListFilter
     {
-        public bool Inactive { get; set; }
-        public string Search { get; set; }
+        public int? Id { get; set; }
+        public bool? Inactive { get; set; }
+        public string? Search { get; set; }
     }
 }
