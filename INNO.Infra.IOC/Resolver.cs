@@ -66,6 +66,7 @@ namespace INNO.Infra.IOC
             services.AddTransient<IHealthPlanRepository, HealthPlanRepository>();
             services.AddTransient<IProfessionalRepository, ProfessionalRepository>();
             services.AddTransient<ITenantPreferencesRepository, TenantPreferencesRepository>();
+            services.AddTransient<IPatientAttachmentRepository, PatientAttachmentRepository>();
 
             return services;
         }

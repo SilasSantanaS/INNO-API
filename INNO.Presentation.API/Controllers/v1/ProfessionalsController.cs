@@ -1,6 +1,5 @@
 ﻿using INNO.Application.Interfaces.Services;
 using INNO.Domain.Constants;
-using INNO.Domain.ViewModels.v1.HealthPlans;
 using INNO.Domain.ViewModels.v1;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

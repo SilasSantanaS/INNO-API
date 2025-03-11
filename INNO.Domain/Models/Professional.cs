@@ -8,6 +8,6 @@
         public Contact? Contact { get; set; }
         public int? AddressId { get; set; }
         public Address? Address { get; set; }
-        public DateTime? InacctivatedAt { get; set; }
+        public DateTime? InactivatedAt { get; set; }
     }
 }
