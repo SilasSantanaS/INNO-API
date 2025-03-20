@@ -1,20 +1,25 @@
-﻿using INNO.Application.Helpers;
+﻿using AutoMapper;
+using INNO.Application.Helpers;
 using INNO.Application.Interfaces.Services;
 using INNO.Domain.Helpers;
 using INNO.Domain.ViewModels.v1;
 using INNO.Domain.ViewModels.v1.Auth;
+using INNO.Domain.ViewModels.v1.Users;
 using INNO.Infra.Interfaces.Repositories;
 
 namespace INNO.Application.Services
 {
     public class AuthService : IAuthService
     {
+        private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
 
         public AuthService(
+            IMapper mapper,
             IUserRepository userRepository
         )
         {
+            _mapper = mapper;
             _userRepository = userRepository;
         }
 
@@ -46,7 +51,8 @@ namespace INNO.Application.Services
             var result = new LoginResponseVM() 
             {
                 Token = token,
-                RefreshToken = refreshToken
+                RefreshToken = refreshToken,
+                User = _mapper.Map<UserResponseVM>(user)
             };
 
             return (result, null);
